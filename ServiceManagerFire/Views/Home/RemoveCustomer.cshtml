@@ -1,0 +1,51 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexCustomer">Заказчики</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@model Customer
+@{
+    ViewData["Title"] = "RemoveCustomer";
+}
+
+<h3>Подтвердите удаление заказчика</h3>
+
+<div>
+    <table class="table">
+        <tr> <th>Название</th><th>Город</th><th>Контакты</th></tr>
+        <tbody>
+
+            <tr>
+                <td>@Model.Name.ToString() </td>
+                <td>@Model.City.ToString() </td>
+                <td>@Model.Description.ToString() </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div>
+        <form asp-controller="Home" asp-action="RemoveCustomer" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Удалить" />
+            </div>
+        </form>
+    </div>
+</div>

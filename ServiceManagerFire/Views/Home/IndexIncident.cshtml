@@ -1,0 +1,77 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+               
+
+               
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexUser">Пользователи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexRoleManager">Роли</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexStatus">Статусы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Выход</a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@using ServiceManagerFire.Models;
+
+@model StatusUserViewModel
+
+
+<h2>Заявки</h2>
+
+<form asp-controller="Home" asp-action="IndexIncident" method="get">
+    <p>
+        Ответственный сотрудник: <select asp-for="IncidentUser" asp-items="Model.Users">
+            <option value="">Все</option>
+        </select>
+
+        Статус:
+        <select asp-for="St" asp-items="Model.Statuses">
+            <option value="">Все</option>
+        </select>
+
+        <input type="submit" value="Найти" />
+    </p>
+</form>
+<table class="table">
+    <tr> <th>Объект</th><th>Адрес</th><th>Описание</th><th>Ответственный</th><th>Статус</th><th>Дата выполнения</th></tr>
+    <tbody>
+        @foreach (var item in Model.Incidents!)
+        {
+            <tr>
+                <td>@item.Objekt.Name.ToString() </td>
+                <td>@item.Objekt.Address.ToString() </td>
+                <td>@item.Description.ToString() </td>
+                <td>@item.User.Name.ToString() </td>
+                <td>@item.Status.Name.ToString() </td>
+                <td>@item.DateTime.ToString() </td>
+                <td>
+                    <a asp-action="RemoveIncident" asp-route-id="@item.Id"> Удалить</a>
+                    <br />
+                    <a asp-action="EditIncident" asp-route-id="@item.Id"> Изменить</a>>
+                    <br />
+                    <a asp-action="DetailsIncident" asp-route-id="@item.Id"> Просмотреть</a>>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="CreateIncident" class="btn btn-default"> Добавить  </a>
+

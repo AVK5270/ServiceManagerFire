@@ -1,0 +1,35 @@
+﻿@using ServiceManagerFire.Models
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Авторизация</h2>
+
+@model Account
+
+<form asp-action="Index" asp-controller="home">
+    <br />
+
+    <div class="form-group">
+        <label asp-for="NameUser" class="control-label">Логин</label>
+        <br />
+        <input type="text" asp-for="NameUser" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="PassUser" class="control-label">Пароль</label>
+        <br />
+        <input type="text" asp-for="PassUser" class="form-control" />
+    </div>
+    <br />
+
+
+    <br />
+
+    <div class="form-group">
+        <input type="submit" value="Войти" class="btn btn-default" />
+
+    </div>
+
+
+</form>

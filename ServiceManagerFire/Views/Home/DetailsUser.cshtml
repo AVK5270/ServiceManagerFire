@@ -1,0 +1,48 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexUser">Пользователи</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@model ServiceManagerFire.Models.User
+
+@{
+    ViewData["Title"] = "DetailsUser";
+}
+
+<h2>Просмотр пользователя</h2>
+
+
+<table class="table">
+    <tr> <th>Имя</th><th>Роль</th></tr>
+    <tbody>
+        
+            <tr>
+                <td>@Model.Name.ToString() </td>
+               
+                <td>@Model.RoleManager.Name.ToString() </td>
+               
+            </tr>
+       
+    </tbody>
+</table>
+<div>
+    <a asp-action="EditUser" asp-route-id="@Model?.Id">Изменить</a> |
+    <a asp-action="IndexUser">Вернуться к списку пользователей</a>
+</div>

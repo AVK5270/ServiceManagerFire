@@ -1,0 +1,58 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+               
+
+              
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexUser">Пользователи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexRoleManager">Роли</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="IndexStatus">Статусы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Выход</a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@using ServiceManagerFire.Models;
+
+@model List<Customer>
+
+
+    <h2>Заказчики</h2>
+
+
+<table class="table">
+    <tr> <th>Название</th><th>Город</th><th>Контакты</th> </tr>
+    <tbody>
+     @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Name.ToString() </td>
+            <td>@item.City.ToString() </td>
+            <td>@item.Description.ToString() </td>
+
+            <td>
+                <a asp-action="RemoveCustomer" asp-route-id="@item.Id"> Удалить</a>
+                <br />
+                <a asp-action="EditCustomer" asp-route-id="@item.Id"> Изменить</a>>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="CreateCustomer" class="btn btn-default"> Добавить  </a>
